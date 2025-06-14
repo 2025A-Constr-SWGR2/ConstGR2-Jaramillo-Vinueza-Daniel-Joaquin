@@ -4,7 +4,8 @@ on: [push]
 
 jobs:
   test:
-    runs-on: [self-hosted]
+    runs-on: ubuntu-latest
+
     steps:
       - name: Descargar el repo
         uses: actions/checkout@v4
@@ -21,3 +22,4 @@ jobs:
       - name: Ejecutar pruebas
         working-directory: ./calculadora
         run: npm test
+
