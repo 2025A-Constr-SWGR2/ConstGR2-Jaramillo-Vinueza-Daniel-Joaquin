@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile # Refers to your custom Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      DB_HOST: DAN_COMP_HOST
+      DB_USER: DAN_COMP_USER
+      DB_PASSWORD: DAN_COMP_PASSWORD
+      DB_NAME: DAN_COMP_DB
+  db:
+    image: postgres:latest
+    container_name: my_postgres_db
+    environment:
+      POSTGRES_USER: DAN_COMP_USER
+      POSTGRES_PASSWORD: DAN_COMP_PASSWORD
+      POSTGRES_DB: DAN_COMP_DB
+    ports:
+      - "5432:5432" # Expose PostgreSQL port
+    volumes:
+      - postgres_data:/var/lib/postgresql/data # Persistent data storage
+volumes:
+  postgres_data:
+ 
